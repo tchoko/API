@@ -154,9 +154,16 @@ public class taxiDAO extends DAO<API_TAXI1>{
         }
      }
      
+      /**
+     * récupération des données d'un taxi sur base de sa description
+     *
+     * @throws SQLException description inconnu
+     * @param desc description du taxi
+     * @return taxi trouvé
+     */
      public List<API_TAXI1> rechp(String desc) throws SQLException {
         List<API_TAXI1> plusieurs = new ArrayList<>();
-        String req = "select idtaxi,immatriculation,carburant,prixkm,description from API_TAXI1 where description like ? ";
+        String req = "select idtaxi,immatriculation,carburant,prixkm,description from API_TAXI1 where lower(description) like ? ";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
             pstm.setString(1, "%"+desc+"%");
@@ -168,12 +175,12 @@ public class taxiDAO extends DAO<API_TAXI1>{
                     String immatriculation = rs.getString("IMMATRICULATION");
                     String carburant = rs.getString("CARBURANT");
                     float prixkm = rs.getFloat("PRIXKM");
-                    String description = rs.getString("DESCRIPTION");
+                    String description = rs.getString("DESCRIPTION").toLowerCase();
                     plusieurs.add(new API_TAXI1(idtaxi, immatriculation, carburant, prixkm, description));
                 }
 
                 if (!trouve) {
-                    throw new SQLException("nom inconnu");
+                    throw new SQLException("description inconnu");
                 } else {
                     return plusieurs;
                 }
@@ -183,6 +190,12 @@ public class taxiDAO extends DAO<API_TAXI1>{
         
     }
      
+      /**
+     * suppréssion des données d'un taxi sur base de son immatriculation
+     *
+     * @throws SQLException immatriculation inconnu
+     * @param immat identifiant du taxi
+     */
       public void suppression(API_TAXI1 obj) throws SQLException{
          String req = "delete from API_TAXI1 where immatriculation= ?";
          try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {

@@ -14,6 +14,13 @@ import java.time.LocalDate;
 import java.util.*;
 import taxi.metier.API_CLIENT1;
 public class ClientDAO extends DAO<API_CLIENT1>{
+    /**
+     * création d'un client sur base des valeurs de son objet métier
+     *
+     * @throws SQLException erreur de création
+     * @param obj client à créer
+     * @return client créé
+     */
     @Override
     public API_CLIENT1 create(API_CLIENT1 obj) throws SQLException{
         String req1 = "insert into API_CLIENT1(nom,prenom,tel) values(?,?,?)";
@@ -43,6 +50,13 @@ public class ClientDAO extends DAO<API_CLIENT1>{
     }
     
     @Override
+    /**
+     * récupération des données d'un client sur base de son identifiant
+     *
+     * @throws SQLException code inconnu
+     * @param idclient identifiant du taxi
+     * @return client trouvé
+     */
     public API_CLIENT1 read(int idclient) throws SQLException{
        String req = "select * from API_CLIENT1 where idclient = ?";
        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
@@ -65,16 +79,37 @@ public class ClientDAO extends DAO<API_CLIENT1>{
     }
     
     @Override
+    /**
+     * mise à jour des données du client sur base de son identifiant
+     *
+     * @return API_CLIENT1
+     * @param obj client à mettre à jour
+     * @throws SQLException erreur de mise à jour
+     */
     public API_CLIENT1 update(API_CLIENT1 obj) throws SQLException {
        
         return new API_CLIENT1();
     }
     @Override
+    
+     /**
+     * effacement du client sur base de son identifiant
+     *
+     * @throws SQLException erreur d'effacement
+     * @param obj client à effacer
+     */
     public void delete(API_CLIENT1 obj) throws SQLException{
         
     }
     @Override
-    public API_CLIENT1 readstring(String immat) throws SQLException{
+     /**
+     * récupération des données d'un client sur base de son nom
+     *
+     * @throws SQLException code inconnu
+     * @param nom nom du client
+     * @return client trouvé
+     */
+    public API_CLIENT1 readstring(String nom) throws SQLException{
         return new API_CLIENT1();
     }
 }

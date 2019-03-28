@@ -47,39 +47,75 @@ public class API_CLIENT1 {
         this.tel = tel;
     }
 
+     /**
+    * getter idclient
+    * @return idclient identifiant unique du client
+    */
     public int getIdclient() {
         return idclient;
     }
 
+    /**
+     * setter idclient
+     * @param idclient affecte un identifiant au client
+     */
     public void setIdclient(int idclient) {
         this.idclient = idclient;
     }
 
+     /**
+    * getter nom
+    * @return nom du client
+    */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * setter nom
+     * @param nom affecte un nom au client
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+     /**
+    * getter prenom
+    * @return prenom du client
+    */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * setter prenom
+     * @param prenom affecte un prenom au client
+     */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
+     /**
+    * getter idloc
+    * @return identifiant de la location
+    */
     public String getTel() {
         return tel;
     }
 
+    /**
+     * setter tel
+     * @param tel affecte un numéro de téléphone à un client
+     */
     public void setTel(String tel) {
         this.tel = tel;
     }
 
     @Override
+      /**
+       * méthode toString
+       * @return informations complètes
+      */
     public String toString() {
         return "API_CLIENT1{" + "idclient=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + '}';
     }
