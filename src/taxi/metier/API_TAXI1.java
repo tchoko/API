@@ -38,6 +38,14 @@ public class API_TAXI1 {
     public API_TAXI1(){
         
     }
+    public API_TAXI1(String immatriculation){
+        this.immatriculation = immatriculation;
+    }
+    
+    public API_TAXI1(String immatriculation, String description){
+        this.immatriculation = immatriculation;
+        this.description = description;
+    }
 
    /**
  * constructeur paramétré

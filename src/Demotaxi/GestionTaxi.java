@@ -101,11 +101,20 @@ public class GestionTaxi {
             System.out.println("erreur " + e.getMessage());
         }
     }
+     /*
+        System.out.println("tel :");
+            String tel = sc.next();
+            clActuel.setTel(tel);
+            clientDAO.update(clActuel);
+     */
      public void modification() {
         try {
             //todo 
-            System.out.println("description: ");
-            String desc = sc.nextLine();
+            System.out.println("Immatriculation du taxi à modifier: ");
+            String immat = sc.nextLine();
+            System.out.println("Description: ");
+            String desc = sc.next();
+            tAct = new API_TAXI1(immat);
             tAct.setDescription(desc);
             txDAO.update(tAct);
         } catch (SQLException e) {
@@ -116,7 +125,8 @@ public class GestionTaxi {
         try {
             System.out.println("Immatriculation: ");
             String immat = sc.nextLine();
-            
+           // tAct = new API_TAXI1(0,immat,"",0,"");
+            tAct = new API_TAXI1(immat);
             txDAO.delete(tAct);
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());

@@ -46,10 +46,14 @@ public class API_VUE_LOCATION {
    */
     protected int id_deb;
     
+    protected String debut;
+    
     /**
      * id de fin du trajet
    */
     protected int id_fin;
+    
+    protected String fin;
     
     /**
      * id du taxi
@@ -89,22 +93,26 @@ public class API_VUE_LOCATION {
      * @param kmtotal kilomètre total parcouru
      * @param acompte acompte de la location
      * @param total Prix total de la location
-     * @param id_deb
-     * @param id_fin
+     * @param id_deb id du debut de la rue 
+     * @param debut nom de la rue de départ
+     * @param id_fin id de la fin de la rue
+     * @param fin nom de la rue à l'arrivée
      * @param id_taxi   identifiant du taxi
      * @param immatriculation immatriculation du taxi
      * @param prixkm    prix au kilomètre de la location
      * @param id_client identifiant du client
      * @param nom nom du client
    */  
-    public API_VUE_LOCATION(int idloc, Date dateloc, int kmtotal, float acompte, float total, int id_deb, int id_fin, int id_taxi, String immatriculation, float prixkm, int id_client, String nom) {
+    public API_VUE_LOCATION(int idloc, Date dateloc, int kmtotal, float acompte, float total, int id_deb, String debut, int id_fin, String fin, int id_taxi, String immatriculation, float prixkm, int id_client, String nom) {
         this.idloc = idloc;
         this.dateloc = dateloc;
         this.kmtotal = kmtotal;
         this.acompte = acompte;
         this.total = total;
         this.id_deb = id_deb;
+        this.debut = debut;
         this.id_fin = id_fin;
+        this.fin = fin;
         this.id_taxi = id_taxi;
         this.immatriculation = immatriculation;
         this.prixkm = prixkm;
@@ -156,6 +164,11 @@ public class API_VUE_LOCATION {
         return id_deb;
     }
 
+    public String getDebut() {
+        return debut;
+    }
+    
+    
     /**
     * getter id_fin
     * @return id_fin
@@ -164,6 +177,11 @@ public class API_VUE_LOCATION {
         return id_fin;
     }
 
+    public String getFin() {
+        return fin;
+    }
+
+    
     /**
     * getter id_taxi
     * @return id_taxi identifiant du taxi
@@ -252,6 +270,10 @@ public class API_VUE_LOCATION {
         this.id_deb = id_deb;
     }
 
+    public void setDebut(String debut) {
+        this.debut = debut;
+    }
+
      /**
      * setter id_fin
      * @param id_fin 
@@ -260,6 +282,11 @@ public class API_VUE_LOCATION {
         this.id_fin = id_fin;
     }
 
+    public void setFin(String fin) {
+        this.fin = fin;
+    }
+
+    
      /**
      * setter id_taxi
      * @param id_taxi identifiant du taxi
@@ -300,17 +327,16 @@ public class API_VUE_LOCATION {
         this.nom = nom;
     }
 
+
     @Override
-       /**
+     /**
  * méthode toString
  * @return informations complètes
  */
     public String toString() {
-        return "API_VUE_LOCATION{" + "idloc=" + idloc + ", dateloc=" + dateloc + ", kmtotal=" + kmtotal + ", acompte=" + acompte + ", total=" + total + ", id_deb=" + id_deb + ", id_fin=" + id_fin + ", id_taxi=" + id_taxi + ", immatriculation=" + immatriculation + ", prixkm=" + prixkm + ", id_client=" + id_client + ", nom=" + nom + '}';
+        return "API_VUE_LOCATION{" + "idloc=" + idloc + ", dateloc=" + dateloc + ", kmtotal=" + kmtotal + ", acompte=" + acompte + ", total=" + total + ", id_deb=" + id_deb + ", debut=" + debut + ", id_fin=" + id_fin + ", fin=" + fin + ", id_taxi=" + id_taxi + ", immatriculation=" + immatriculation + ", prixkm=" + prixkm + ", id_client=" + id_client + ", nom=" + nom + '}';
     }
-    
-    
-    
+      
     
     
 }
