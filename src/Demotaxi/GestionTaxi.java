@@ -101,12 +101,7 @@ public class GestionTaxi {
             System.out.println("erreur " + e.getMessage());
         }
     }
-     /*
-        System.out.println("tel :");
-            String tel = sc.next();
-            clActuel.setTel(tel);
-            clientDAO.update(clActuel);
-     */
+     
      public void modification() {
         try {
             //todo 

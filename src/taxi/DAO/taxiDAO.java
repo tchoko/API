@@ -142,7 +142,7 @@ public class taxiDAO extends DAO<API_TAXI1> {
             int n = pstm2.executeUpdate();
 
             if (n == 0) {
-                throw new SQLException("aucune ligne location supprimer");
+                throw new SQLException("aucune ligne location supprimée");
             }
             pstm1.setString(1, obj.getImmatriculation());
             int p = pstm1.executeUpdate();
@@ -225,6 +225,7 @@ public class taxiDAO extends DAO<API_TAXI1> {
      * @throws SQLException immatriculation inconnu
      * @param immat identifiant du taxi
      */
+    /*
     public void suppression(API_TAXI1 obj) throws SQLException {
         String req = "delete from API_TAXI1 where immatriculation= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
@@ -236,5 +237,5 @@ public class taxiDAO extends DAO<API_TAXI1> {
             }
 
         }
-    }
+    }*/
 }
