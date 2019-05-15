@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.*;
 import taxi.metier.API_TAXI1;
 
-public class taxiDAO extends DAO<API_TAXI1> {
+public class API_TAXI1DAO extends DAO<API_TAXI1> {
 
     /**
      * création d'un taxi sur base des valeurs de son objet métier
@@ -90,31 +90,18 @@ public class taxiDAO extends DAO<API_TAXI1> {
      */
     @Override
     public API_TAXI1 update(API_TAXI1 obj) throws SQLException {
-        String req2 = "SELECT idtaxi from API_TAXI1 where immatriculation = ?";
-        String req = "UPDATE API_TAXI1 set description=? where idtaxi= ?";
-        try (PreparedStatement pstm2 = dbConnect.prepareStatement(req2);
-                PreparedStatement pstm = dbConnect.prepareStatement(req) ) {
+      //  String req2 = "SELECT idtaxi from API_TAXI1 where immatriculation = ?";
+        String req = "UPDATE API_TAXI1 set description=? where immatriculation= ?";
+        try(PreparedStatement pstm = dbConnect.prepareStatement(req) ) {
 
-            pstm2.setString(1, obj.getImmatriculation());
-            ResultSet rs = pstm2.executeQuery();
-            int p=0;
-            while(rs.next()){
-                 p = rs.getInt("idtaxi");
-            }
-            System.out.println(p);
-            pstm.setInt(2, p);
+            pstm.setString(2, obj.getImmatriculation());
             pstm.setString(1, obj.getDescription());
-            /*
-            pstm.setInt(5, obj.getIdtaxi());
-            pstm.setString(1, obj.getImmatriculation());
-            pstm.setString(2, obj.getCarburant());
-            pstm.setFloat(3, obj.getPrixkm());
-            */
+            
             int n = pstm.executeUpdate();
             if (n == 0) {
                 throw new SQLException("aucune ligne taxi mise à jour");
             }
-            return read(obj.getIdtaxi());
+            return readstring(obj.getImmatriculation());
         }
     }
 
@@ -126,29 +113,15 @@ public class taxiDAO extends DAO<API_TAXI1> {
      */
     @Override
     public void delete(API_TAXI1 obj) throws SQLException {
-        String req1 = "DELETE FROM API_TAXI1 WHERE immatriculation = ?";
-        String req = "SELECT idtaxi from API_TAXI1 where immatriculation = ?";
-        String req2 = "DELETE FROM API_LOCATION1 WHERE id_taxi = ?";
-        try (PreparedStatement pstm3 = dbConnect.prepareStatement(req); PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
-                PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
-            pstm3.setString(1, obj.getImmatriculation());
-            ResultSet rs = pstm3.executeQuery();
-          int m=0;
-          while(rs.next()){
-                 m = rs.getInt("idtaxi");
-            }
-            System.out.println(m);
-            pstm2.setInt(1, m);
-            int n = pstm2.executeUpdate();
+        String req = "DELETE FROM API_TAXI1 WHERE immatriculation = ?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            
+            
+            pstm.setString(1, obj.getImmatriculation());
+            int n = pstm.executeUpdate();
 
             if (n == 0) {
                 throw new SQLException("aucune ligne location supprimée");
-            }
-            pstm1.setString(1, obj.getImmatriculation());
-            int p = pstm1.executeUpdate();
-
-            if (p == 0) {
-                throw new SQLException("aucune ligne taxi effacée..");
             }
 
         }

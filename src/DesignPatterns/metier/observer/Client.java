@@ -1,5 +1,6 @@
 
-package DesignPatterns.metier;
+package DesignPatterns.metier.observer;
+import DesignPatterns.metier.*;
 import DesignPatterns.metier.observer.Observer;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.Set;
  *
  * @author Clive TCHOKOUANDEU
  */
-public class Client {
+public class Client extends Observer{
     private int idclient;
     private String nom;
     private String prenom;
@@ -103,5 +104,16 @@ public class Client {
         }
         return true;
     }
+
+    @Override
+    public void update(String msg) {
+        System.out.println(prenom+" "+nom+" a reçu le msg :"+msg);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "idclient=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", adresse=" + adresse + '}';
+    }
+    
     
 }

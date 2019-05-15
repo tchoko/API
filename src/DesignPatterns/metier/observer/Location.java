@@ -1,5 +1,6 @@
 
-package DesignPatterns.metier;
+package DesignPatterns.metier.observer;
+import DesignPatterns.metier.*;
 import DesignPatterns.metier.builder.Taxi;
 import java.sql.Date;
 import java.util.HashSet;
@@ -10,9 +11,9 @@ import java.util.Set;
  *
  * @author Clive TCHOKOUANDEU
  */
-public class Location {
+public class Location extends Subject{
     private int idloc;
-    private Date dateloc;
+    private String dateloc;
     private int kmtotal;
     private Double acompte;
     private Double total;
@@ -21,10 +22,25 @@ public class Location {
     private Client client;
     private Taxi vehicule;
     
-    public Location(int idloc, Date dateloc, int kmtotal, Double acompte, Double total){
+    public Location(int idloc, String dateloc, int kmtotal, Double acompte, Double total){
         this.idloc = idloc;
         this.dateloc = dateloc;
         this.kmtotal = kmtotal;
+        this.acompte = acompte;
+        this.total = total;
+    }
+    public Location(int idloc, String dateloc, int kmtotal, Double acompte, Double total,Client client){
+        this.idloc = idloc;
+        this.dateloc = dateloc;
+        this.kmtotal = kmtotal;
+        this.acompte = acompte;
+        this.total = total;
+        this.client = client;
+    }
+
+    Location(int idloc, String dateloc, double acompte, double total) {
+        this.idloc = idloc;
+        this.dateloc = dateloc;
         this.acompte = acompte;
         this.total = total;
     }
@@ -35,13 +51,14 @@ public class Location {
 
     public void setIdloc(int idloc) {
         this.idloc = idloc;
+        notifyObservers();
     }
 
-    public Date getDateloc() {
+    public String getDateloc() {
         return dateloc;
     }
 
-    public void setDateloc(Date dateloc) {
+    public void setDateloc(String dateloc) {
         this.dateloc = dateloc;
     }
 
@@ -125,5 +142,14 @@ public class Location {
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Location{" + "idloc=" + idloc + ", dateloc=" + dateloc + ", kmtotal=" + kmtotal + ", acompte=" + acompte + ", total=" + total + ", adrDebut=" + adrDebut + ", adrFin=" + adrFin + ", client=" + client + ", vehicule=" + vehicule + '}';
+    }
+
+    @Override
+    public String getNotification() {
+         return "nouvelle location avec pour nouvel id = "+idloc;
+    }
 }

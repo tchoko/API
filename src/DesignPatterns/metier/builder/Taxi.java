@@ -1,5 +1,4 @@
-package DesignPatterns.metier;
-import DesignPatterns.metier.builder.*;
+package DesignPatterns.metier.builder;
 import DesignPatterns.metier.Location;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,52 +15,43 @@ public class Taxi {
     private Double prixkm;
     private Set<Location> location = new HashSet();
     
-    private Taxi() {
-    this.idtaxi = idtaxi;
-    this.immatriculation = immatriculation;
-    this.carburant = carburant;
-    this.prixkm = prixkm;
+    private Taxi(TaxiBuilder tb) {
+    this.idtaxi = tb.idtaxi;
+    this.immatriculation = tb.immatriculation;
+    this.carburant = tb.carburant;
+    this.prixkm = tb.prixkm;
 
-    }
+}
+    
 
     public int getIdtaxi() {
         return idtaxi;
     }
 
+   
+
     public String getImmatriculation() {
         return immatriculation;
     }
+
+   
 
     public String getCarburant() {
         return carburant;
     }
 
+   
+
     public Double getPrixkm() {
         return prixkm;
     }
+
+   
 
     public Set<Location> getLocation() {
         return location;
     }
 
-    public void setIdtaxi(int idtaxi) {
-        this.idtaxi = idtaxi;
-    }
-
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
-    }
-
-    public void setCarburant(String carburant) {
-        this.carburant = carburant;
-    }
-
-    public void setPrixkm(Double prixkm) {
-        this.prixkm = prixkm;
-    }
-
-
-    
     @Override
     public String toString() {
         return "Taxi{" + "idtaxi=" + idtaxi + ", immatriculation=" + immatriculation + ", prixkm=" + prixkm + '}';
@@ -92,7 +82,32 @@ public class Taxi {
         }
         return true;
     }
-   
-}
+    public static class TaxiBuilder{
+        private int idtaxi;
+        private String immatriculation;
+        private String carburant;
+        private Double prixkm;
+        
+         public TaxiBuilder setIdtaxi(int idtaxi) {
+            this.idtaxi = idtaxi;
+            return this;
+        }
+          public TaxiBuilder setImmatriculation(String immatriculation) {
+            this.immatriculation = immatriculation;
+            return this;
+        }
+           public TaxiBuilder setCarburant(String carburant) {
+            this.carburant = carburant;
+            return this;
+        }
+            public TaxiBuilder setPrixkm(double prixkm) {
+            this.prixkm = prixkm;
+            return this;
+        }
+            public Taxi build() throws Exception{
+            if(idtaxi<=0 || immatriculation==null || prixkm==null) throw new Exception("informations de construction incomplètes");
+            return new Taxi(this);
+        }
+    }
     
-
+}

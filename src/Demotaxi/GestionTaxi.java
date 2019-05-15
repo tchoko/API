@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import taxi.DAO.taxiDAO;
+import taxi.DAO.API_TAXI1DAO;
 import taxi.DAO.DAO;
 import taxi.metier.API_TAXI1;
 import myconnnections.DBConnection;
@@ -35,7 +35,7 @@ public class GestionTaxi {
 
         System.out.println("connexion établie");
 
-        txDAO = new taxiDAO();
+        txDAO = new API_TAXI1DAO();
         txDAO.setConnection(dbConnect);
 
         int ch = 0;
@@ -107,11 +107,15 @@ public class GestionTaxi {
             //todo 
             System.out.println("Immatriculation du taxi à modifier: ");
             String immat = sc.nextLine();
-            System.out.println("Description: ");
-            String desc = sc.next();
-            tAct = new API_TAXI1(immat);
+            //tAct = new API_TAXI1(immat);
+            tAct = txDAO.readstring(immat);
+            System.out.println(tAct);
+             System.out.println("Description: ");
+            String desc = sc.nextLine();
             tAct.setDescription(desc);
+            
             txDAO.update(tAct);
+            System.out.println(txDAO.readstring(immat));
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
@@ -121,8 +125,11 @@ public class GestionTaxi {
             System.out.println("Immatriculation: ");
             String immat = sc.nextLine();
            // tAct = new API_TAXI1(0,immat,"",0,"");
-            tAct = new API_TAXI1(immat);
+           // tAct = new API_TAXI1(immat);
+            tAct = txDAO.readstring(immat);
+            System.out.println(tAct);
             txDAO.delete(tAct);
+            System.out.println("Ligne Supprimée");
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
@@ -133,7 +140,7 @@ public class GestionTaxi {
             System.out.println("description recherchée :");
             String nc = sc.nextLine();
             try {
-            List<API_TAXI1> taxi = ((taxiDAO) txDAO).rechp(nc);
+            List<API_TAXI1> taxi = ((API_TAXI1DAO) txDAO).rechp(nc);
             for (API_TAXI1 cl : taxi) {
                 System.out.println(cl);
             }
