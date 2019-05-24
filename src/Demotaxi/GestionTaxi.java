@@ -82,6 +82,7 @@ public class GestionTaxi {
         System.out.print("Description: ");
         String description = sc.nextLine();
         tAct = new API_TAXI1(0, immatriculation, carburant, prixkm, description);
+        //tAct = new API_TAXI1(immatriculation, carburant, prixkm, description);
         try {
             tAct = txDAO.create(tAct);
             System.out.println("taxi actuel : " + tAct);
@@ -113,6 +114,7 @@ public class GestionTaxi {
              System.out.println("Description: ");
             String desc = sc.nextLine();
             tAct.setDescription(desc);
+           // tAct.setCarburant(10);
             
             txDAO.update(tAct);
             System.out.println(txDAO.readstring(immat));

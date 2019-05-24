@@ -142,4 +142,5 @@ public class API_TAXI1 {
         return "Taxi{" + "idtaxi=" + idtaxi + ", immatriculation=" + immatriculation + ", carburant=" + carburant + ", prixkm=" + prixkm + ", desription=" + description + '}';
     }
     
+     
 }

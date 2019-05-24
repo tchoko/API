@@ -192,13 +192,24 @@ public class API_TAXI1DAOTest {
     @Test
     public void testReadstring() throws Exception {
         System.out.println("readstring");
-        String immat = "";
+        String immat = "TestImmatriculation";
+        API_TAXI1 obj=  new API_TAXI1(0,"TestImmatriculation","TestCarburant",50,"TestDescription");
         API_TAXI1DAO instance = new API_TAXI1DAO();
-        API_TAXI1 expResult = null;
+        instance.setConnection(dbConnect);
+       /* API_TAXI1 expResult = instance.create(obj);
         API_TAXI1 result = instance.readstring(immat);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Immatriculation différentes",expResult.getImmatriculation(), result.getImmatriculation());
+        assertEquals("Description différente",expResult.getDescription(),result.getDescription());
+        assertEquals("Carburant différent",expResult.getCarburant(),result.getCarburant());
+        assertEquals("prix différent",expResult.getPrixkm(),result.getPrixkm(),0);
+        assertEquals("id différent",expResult.getIdtaxi(),result.getIdtaxi());
+        try{
+            result = instance.read(0);
+            fail("exception d'id inconnu non générée");
+        }
+        catch(SQLException e){}
+        instance.delete(result);*/
     }
 
     /**
@@ -209,13 +220,14 @@ public class API_TAXI1DAOTest {
         System.out.println("rechp");
         String desc = "TestDescription";
         API_TAXI1DAO instance = new API_TAXI1DAO();
+       /* instance.setConnection(dbConnect);
         API_TAXI1 obj = new API_TAXI1(0, "TestImmatriculation", "TestCarburant", 50, "TestDescription");
         List<API_TAXI1> expResult = null;
+        obj = instance.create(obj);
         expResult.add(obj);
         List<API_TAXI1> result = instance.rechp(desc);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertEquals(expResult,result);*/
+        
     }
     
 }

@@ -87,8 +87,18 @@ public class ClientDAO extends DAO<API_CLIENT1>{
      * @throws SQLException erreur de mise à jour
      */
     public API_CLIENT1 update(API_CLIENT1 obj) throws SQLException {
-       
-        return new API_CLIENT1();
+        String req = "UPDATE API_CLIENT1 set prenom=? where nom= ?";
+        try(PreparedStatement pstm = dbConnect.prepareStatement(req) ) {
+
+            pstm.setString(2, obj.getNom());
+            pstm.setString(1, obj.getPrenom());
+            
+            int n = pstm.executeUpdate();
+            if (n == 0) {
+                throw new SQLException("aucune ligne taxi mise à jour");
+            }
+            return readstring(obj.getNom());
+        }
     }
     @Override
     
@@ -99,7 +109,18 @@ public class ClientDAO extends DAO<API_CLIENT1>{
      * @param obj client à effacer
      */
     public void delete(API_CLIENT1 obj) throws SQLException{
-        
+        String req = "DELETE FROM API_CLIENT1 WHERE nom = ?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            
+            
+            pstm.setString(1, obj.getNom());
+            int n = pstm.executeUpdate();
+
+            if (n == 0) {
+                throw new SQLException("aucune ligne Client supprimée");
+            }
+
+        }
     }
     @Override
      /**
@@ -109,7 +130,52 @@ public class ClientDAO extends DAO<API_CLIENT1>{
      * @param nom nom du client
      * @return client trouvé
      */
-    public API_CLIENT1 readstring(String nom) throws SQLException{
-        return new API_CLIENT1();
+    public API_CLIENT1 readstring(String name) throws SQLException{
+        String req = "select * from API_CLIENT1 where nom = ?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+
+            pstm.setString(1, name);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    int idclient = rs.getInt("IDCLIENT");
+                    String nom = rs.getString("NOM");
+                    String prenom = rs.getString("PRENOM");
+                    String tel = rs.getString("TEL");
+                    return new API_CLIENT1(idclient,nom,prenom,tel);
+
+                } else {
+                    throw new SQLException("Code inconnu");
+                }
+
+            }
+        }
+    }
+    
+    /**
+     * récupération de toutes les données d'un taxi 
+     *
+     * @throws SQLException 
+     * @param idclient
+     * @param nom
+     * @param prenom
+     * @param tel
+     * @return l'ensemble des taxis
+     */
+      public List<API_CLIENT1> Affiche() throws SQLException {
+        List<API_CLIENT1> c = new ArrayList();
+        String req = "select * from API_CLIENT1";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    int idclient = rs.getInt("IDCLIENT");
+                    String nom = rs.getString("NOM");
+                    String prenom = rs.getString("PRENOM");
+                    String tel = rs.getString("TEL");
+    
+                    c.add(new API_CLIENT1(idclient, nom, prenom, tel));
+                }
+            }
+        }
+        return c;
     }
 }

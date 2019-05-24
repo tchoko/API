@@ -17,6 +17,7 @@ public class gestionTaxi {
                     setIdtaxi(1).
                     setImmatriculation("AE50-US1").
                     setPrixkm(8.50).
+                    setDescription("Tres OK").
                     build();
             System.out.println(t1);
         } catch (Exception e) {
@@ -27,6 +28,7 @@ public class gestionTaxi {
             Taxi t2 = new Taxi.TaxiBuilder().
                     setIdtaxi(2).
                     setImmatriculation("ZE50-US1").
+                    setDescription("OK").
                     build();
             System.out.println(t2);
         } catch (Exception e) {

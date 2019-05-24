@@ -13,6 +13,7 @@ public class Taxi {
     private String immatriculation;
     private String carburant;
     private Double prixkm;
+    private String description;
     private Set<Location> location = new HashSet();
     
     private Taxi(TaxiBuilder tb) {
@@ -20,6 +21,7 @@ public class Taxi {
     this.immatriculation = tb.immatriculation;
     this.carburant = tb.carburant;
     this.prixkm = tb.prixkm;
+    this.description = tb.description;
 
 }
     
@@ -46,7 +48,9 @@ public class Taxi {
         return prixkm;
     }
 
-   
+    public String getDescription(){
+        return description;
+    }
 
     public Set<Location> getLocation() {
         return location;
@@ -87,6 +91,7 @@ public class Taxi {
         private String immatriculation;
         private String carburant;
         private Double prixkm;
+        private String description;
         
          public TaxiBuilder setIdtaxi(int idtaxi) {
             this.idtaxi = idtaxi;
@@ -104,10 +109,17 @@ public class Taxi {
             this.prixkm = prixkm;
             return this;
         }
+            public TaxiBuilder setDescription(String description) {
+            this.description = description;
+            return this;
+            
+        }
             public Taxi build() throws Exception{
             if(idtaxi<=0 || immatriculation==null || prixkm==null) throw new Exception("informations de construction incomplètes");
             return new Taxi(this);
         }
+
+        
     }
     
 }
