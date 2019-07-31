@@ -36,7 +36,19 @@ public class Location extends Subject{
         this.acompte = acompte;
         this.total = total;
         this.client = client;
+        new Location(idloc,dateloc,kmtotal,acompte,total,client).addObserver(client);
     }
+/*
+        public Location(int idloc, String dateloc, int kmtotal, Double acompte, Double total,Client client,Taxi vehicule){
+        this.idloc = idloc;
+        this.dateloc = dateloc;
+        this.kmtotal = kmtotal;
+        this.acompte = acompte;
+        this.total = total;
+        this.client = client;
+        //this.vehicule = vehicule;
+        new Location(idloc,dateloc,kmtotal,acompte,total,client).addObserver(client);
+    }*/
 
     Location(int idloc, String dateloc, double acompte, double total) {
         this.idloc = idloc;

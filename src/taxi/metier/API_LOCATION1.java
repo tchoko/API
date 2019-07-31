@@ -6,6 +6,7 @@
 package taxi.metier;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *classe métier de gestion d'une location
@@ -20,7 +21,7 @@ public class API_LOCATION1 {
     /**
      * date de la location
    */
-    protected Date dateloc;
+    protected LocalDate dateloc;
     /**
      * kilomètre total  de la location
    */
@@ -69,7 +70,7 @@ public class API_LOCATION1 {
      * @param id_taxi
      * @param id_client identifiant du client
    */  
-    public API_LOCATION1(int idloc, Date dateloc, int kmtotal, float acompte, float total, int id_deb, int id_fin, int id_taxi, int id_client) {
+    public API_LOCATION1(int idloc, LocalDate dateloc, int kmtotal, float acompte, float total, int id_deb, int id_fin, int id_taxi, int id_client) {
         this.idloc = idloc;
         this.dateloc = dateloc;
         this.kmtotal = kmtotal;
@@ -101,7 +102,7 @@ public class API_LOCATION1 {
     * getter dateloc
     * @return dateloc date de la location
     */
-    public Date getDateloc() {
+    public LocalDate getDateloc() {
         return dateloc;
     }
 
@@ -109,7 +110,7 @@ public class API_LOCATION1 {
      * setter dateloc
      * @param dateloc affecte une date à la location
      */
-    public void setDateloc(Date dateloc) {
+    public void setDateloc(LocalDate dateloc) {
         this.dateloc = dateloc;
     }
 
