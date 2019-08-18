@@ -152,7 +152,39 @@ public class API_LOCATION1DAO extends DAO <API_LOCATION1> {
 
         }
     }
+     /**
+     *Affiche Les Locations liées à un Taxi sur base de son id
+     * @param idT
+     * @return Locations
+     * @throws SQLException
+     */
+    public List<API_LOCATION1> AfficheLocTaxi(int idT) throws SQLException {
+        List<API_LOCATION1> l = new ArrayList();
+        String req = "SELECT * FROM API_LOCATION1 WHERE idtaxi=?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setInt(1, idT);
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    int idloc = rs.getInt("IDLOC");
+                    LocalDate dateloc = rs.getDate("DATELOC").toLocalDate();
+                    int kmtotal = rs.getInt("KMTOTAL");
+                    float acompte = rs.getFloat("ACOMPTE");
+                    float total = rs.getFloat("TOTAL");
+                    int idclient = rs.getInt("IDCLIENT");
+                    int idtaxi = rs.getInt("IDTAXI");
+                    int id_deb = rs.getInt("ID_DEB");
+                    int id_fin = rs.getInt("ID_FIN");
+                    l.add(new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, idclient, idtaxi, id_deb, id_fin));
+                }
+            }
+        }
+        return l;
+    }
     
+    /**
+     * Affiche les locations 
+     * @return une liste
+     */
      public List<API_LOCATION1> afficheAll() throws SQLException {
         List<API_LOCATION1> loc = new ArrayList();
         String req = "SELECT * FROM API_LOCATION1";

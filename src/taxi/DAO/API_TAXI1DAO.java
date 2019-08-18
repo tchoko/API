@@ -204,10 +204,13 @@ public class API_TAXI1DAO extends DAO<API_TAXI1> {
      */
       public List<API_TAXI1> Affiche() throws SQLException {
         List<API_TAXI1> t = new ArrayList();
-        String req = "select * from API_TAXI1";
-        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-            try (ResultSet rs = pstm.executeQuery()) {
-                while (rs.next()) {
+        String req = "SELECT * FROM API_TAXI1";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) 
+        {
+            try (ResultSet rs = pstm.executeQuery())
+            {
+                while (rs.next()) 
+                {
                     int idtaxi = rs.getInt("IDTAXI");
                     String immatriculation = rs.getString("IMMATRICULATION");
                     String carburant = rs.getString("CARBURANT");

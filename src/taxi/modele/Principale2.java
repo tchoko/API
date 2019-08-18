@@ -12,6 +12,7 @@ import taxi.DAO.ClientDAO;
 import taxi.DAO.API_TAXI1DAO;
 import taxi.DAO.ClientDAO;
 import taxi.DAO.API_TAXI1DAO;
+import taxi.DAO.API_LOCATION1DAO;
 /**
  *
  * @author CASHCONVERTERS
@@ -31,12 +32,18 @@ CardLayout cardl;
         }
         API_TAXI1DAO taxiDAO = new API_TAXI1DAO();
         ClientDAO clientDAO = new ClientDAO();
+        API_LOCATION1DAO locationDAO = new API_LOCATION1DAO();
         clientDAO.setConnection(dbConnect);
         taxiDAO.setConnection(dbConnect);
+        locationDAO.setConnection(dbConnect);
         creerTaxi1.setTaxiDAO(taxiDAO);
         supTaxi1.setTaxiDAO(taxiDAO);
         maj1.setTaxiDAO(taxiDAO);
         client11.setClientDAO(clientDAO);
+        rechLoc1.setTaxiDAO(taxiDAO);
+        rechLoc1.setClientDAO(clientDAO);
+        rechLoc1.setLocationDAO(locationDAO);
+        
     }
 
     /**
@@ -52,13 +59,17 @@ CardLayout cardl;
         supTaxi1 = new taxi.modele.SupTaxi();
         maj1 = new taxi.modele.Maj();
         client11 = new taxi.modele.Client1();
+        rechLoc1 = new taxi.modele.RechLoc();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -66,6 +77,7 @@ CardLayout cardl;
         getContentPane().add(supTaxi1, "cardSup");
         getContentPane().add(maj1, "cardMaj");
         getContentPane().add(client11, "cardClient");
+        getContentPane().add(rechLoc1, "cardrechLoc");
 
         jMenu1.setText("Taxis");
 
@@ -101,9 +113,35 @@ CardLayout cardl;
                 jMenu2ActionPerformed(evt);
             }
         });
+
+        jMenuItem6.setText("Gestion Clients");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("jMenu3");
+        jMenu3.setText("Locations");
+
+        jMenuItem4.setText("Location");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Nouvelle Location");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -130,6 +168,22 @@ CardLayout cardl;
         // TODO add your handling code here:
         cardl.show(this.getContentPane(), "cardClient");
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        rechLoc1.AddTaxi();
+        cardl.show(this.getContentPane(), "cardrechLoc");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+       cardl.show(this.getContentPane(), "cardClient");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,7 +230,11 @@ CardLayout cardl;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private taxi.modele.Maj maj1;
+    private taxi.modele.RechLoc rechLoc1;
     private taxi.modele.SupTaxi supTaxi1;
     // End of variables declaration//GEN-END:variables
 }
