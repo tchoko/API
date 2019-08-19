@@ -7,6 +7,7 @@ package taxi.modele;
 import taxi.metier.API_CLIENT1;
 import taxi.metier.API_LOCATION1;
 import taxi.metier.API_TAXI1;
+import taxi.metier.API_ADRESSE1;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import taxi.DAO.ClientDAO;
 import taxi.DAO.API_LOCATION1DAO;
 import taxi.DAO.API_TAXI1DAO;
+import taxi.DAO.AdresseDAO;
 /**
  *
  * @author CASHCONVERTERS
@@ -30,11 +32,11 @@ public class RechLoc extends javax.swing.JPanel {
     API_LOCATION1DAO locationDAO = null;
     API_TAXI1DAO taxiDAO = null;
     ClientDAO clientDAO = null;
+    AdresseDAO adresseDAO = null;
     DefaultTableModel dtml = new DefaultTableModel();
     List<API_TAXI1> t1;
     public RechLoc() {
         initComponents();
-        //taxiDAO = new API_TAXI1DAO();
         dtml.addColumn("idloc");
         dtml.addColumn("DateLoc");
         dtml.addColumn("Kmtotal");
@@ -55,6 +57,9 @@ public class RechLoc extends javax.swing.JPanel {
     }
     public void setClientDAO(ClientDAO clientDAO) {
         this.clientDAO = clientDAO;
+    }
+     public void setAdresseDAO(AdresseDAO adresseDAO) {
+        this.adresseDAO = adresseDAO;
     }
     
     public void AddTaxi() {
@@ -146,38 +151,33 @@ public class RechLoc extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(435, 571, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(66, 66, 66))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(237, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(265, 265, 265))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
                     .addComponent(jLabel2))
-                .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27)
+                .addGap(73, 73, 73)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(100, Short.MAX_VALUE))
         );
@@ -208,11 +208,17 @@ public class RechLoc extends javax.swing.JPanel {
                 System.out.println(v);
                 v.add(l.getTotal());
                 System.out.println(v);
-                t = taxiDAO.read(l.getId_taxi());
+                v.add(l.getId_taxi());
+               /* t = taxiDAO.read(l.getId_taxi());
                 v.add(t.getImmatriculation());
-                System.out.println(v);
+                System.out.println(v);*/
                 API_CLIENT1 cl = clientDAO.read(l.getId_client());
                 v.add(cl.getNom());
+                System.out.println(v);
+                API_ADRESSE1 deb = adresseDAO.read(l.getId_deb());
+                v.add("Rue " + deb.getRue()+ ", " + deb.getLocalite());
+                API_ADRESSE1 fin = adresseDAO.read(l.getId_fin());
+                v.add("Rue" + fin.getRue() + ", " + fin.getLocalite());
                 System.out.println(v);
                 dtml.addRow(v);
             }

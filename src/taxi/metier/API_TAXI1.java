@@ -38,6 +38,9 @@ public class API_TAXI1 {
     public API_TAXI1(){
         
     }
+    public API_TAXI1(int id_taxi){
+        this.idtaxi = id_taxi;
+    }
     public API_TAXI1(String immatriculation){
         this.immatriculation = immatriculation;
     }

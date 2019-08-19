@@ -62,7 +62,6 @@ public class API_TAXI1DAO extends DAO<API_TAXI1> {
     public API_TAXI1 read(int idtaxi) throws SQLException {
         String req = "select * from API_TAXI1 where idtaxi = ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-
             pstm.setInt(1, idtaxi);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {

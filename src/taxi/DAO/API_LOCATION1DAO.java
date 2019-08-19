@@ -42,7 +42,7 @@ public class API_LOCATION1DAO extends DAO <API_LOCATION1> {
                     int id_deb = rs.getInt("ID_DEB");
                     int id_fin = rs.getInt("ID_FIN");
 
-                    return new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, idclient, idtaxi, id_deb, id_fin);
+                    return new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total,  idtaxi, idclient, id_deb, id_fin);
 
                 } else {
                     throw new SQLException("Code inconnu");
@@ -73,7 +73,6 @@ public class API_LOCATION1DAO extends DAO <API_LOCATION1> {
             pstm1.setInt(2, obj.getKmtotal());
             pstm1.setFloat(3, obj.getAcompte());
             pstm1.setFloat(4, obj.getTotal());
-
             pstm1.setInt(5, obj.getId_client());
             pstm1.setInt(6, obj.getId_taxi());
             pstm1.setInt(7, obj.getId_deb());
@@ -174,7 +173,7 @@ public class API_LOCATION1DAO extends DAO <API_LOCATION1> {
                     int idtaxi = rs.getInt("IDTAXI");
                     int id_deb = rs.getInt("ID_DEB");
                     int id_fin = rs.getInt("ID_FIN");
-                    l.add(new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, idclient, idtaxi, id_deb, id_fin));
+                    l.add(new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, id_deb, id_fin,  idtaxi, idclient));
                 }
             }
         }
@@ -200,7 +199,7 @@ public class API_LOCATION1DAO extends DAO <API_LOCATION1> {
                     int idtaxi = rs.getInt("IDTAXI");
                     int id_deb = rs.getInt("ID_DEB");
                     int id_fin = rs.getInt("ID_FIN");
-                    loc.add(new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, idclient, idtaxi, id_deb, id_fin));
+                    loc.add(new API_LOCATION1(idloc, dateloc, kmtotal, acompte, total, id_deb, id_fin,  idtaxi, idclient));
                 }
             }
         }

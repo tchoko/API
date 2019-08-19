@@ -45,11 +45,11 @@ public class API_LOCATION1 {
     /**
      * id du taxi
    */
-    protected int id_taxi;
+    protected int idtaxi;
      /**
      * id du client
    */
-    protected int id_client;
+    protected int idclient;
     
      /**
       * constructeur sans paramétes
@@ -67,8 +67,8 @@ public class API_LOCATION1 {
      * @param total Prix total de la location
      * @param id_deb
      * @param id_fin
-     * @param id_taxi
-     * @param id_client identifiant du client
+     * @param idtaxi
+     * @param idclient identifiant du client
    */  
     public API_LOCATION1(int idloc, LocalDate dateloc, int kmtotal, float acompte, float total, int id_deb, int id_fin, int id_taxi, int id_client) {
         this.idloc = idloc;
@@ -78,8 +78,8 @@ public class API_LOCATION1 {
         this.total = total;
         this.id_deb = id_deb;
         this.id_fin = id_fin;
-        this.id_taxi = id_taxi;
-        this.id_client = id_client;
+        this.idtaxi = id_taxi;
+        this.idclient = id_client;
     }
 
     /**
@@ -199,7 +199,7 @@ public class API_LOCATION1 {
     * @return id_taxi identifiant du taxi
     */
     public int getId_taxi() {
-        return id_taxi;
+        return idtaxi;
     }
 
     /**
@@ -207,7 +207,7 @@ public class API_LOCATION1 {
      * @param id_taxi affecte un identifiant au taxi
      */
     public void setId_taxi(int id_taxi) {
-        this.id_taxi = id_taxi;
+        this.idtaxi = id_taxi;
     }
 
     /**
@@ -215,7 +215,7 @@ public class API_LOCATION1 {
     * @return id_client identifiant du client
     */
     public int getId_client() {
-        return id_client;
+        return idclient;
     }
 
     /**
@@ -223,7 +223,7 @@ public class API_LOCATION1 {
      * @param id_client affecte un identifiant au client
      */
     public void setId_client(int id_client) {
-        this.id_client = id_client;
+        this.idclient = id_client;
     }
 
     @Override
@@ -232,7 +232,8 @@ public class API_LOCATION1 {
       * @return informations complètes
       */
     public String toString() {
-        return "API_LOCATION1{" + "idloc=" + idloc + ", dateloc=" + dateloc + ", kmtotal=" + kmtotal + ", acompte=" + acompte + ", total=" + total + ", id_deb=" + id_deb + ", id_fin=" + id_fin + ", id_taxi=" + id_taxi + ", id_client=" + id_client + '}';
+       // API_LOCATION1(idloc, dateloc, kmtotal, acompte, total,  idtaxi, idclient, id_deb, id_fin);
+        return "API_LOCATION1{" + "idloc=" + idloc + ", dateloc=" + dateloc + ", kmtotal=" + kmtotal + ", acompte=" + acompte + ", total=" + total +  ", id_deb=" + id_deb + ", id_fin=" + id_fin +", idtaxi=" + idtaxi + ", idclient=" + idclient + '}';
     }
     
     

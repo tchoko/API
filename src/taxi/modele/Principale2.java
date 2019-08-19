@@ -13,6 +13,7 @@ import taxi.DAO.API_TAXI1DAO;
 import taxi.DAO.ClientDAO;
 import taxi.DAO.API_TAXI1DAO;
 import taxi.DAO.API_LOCATION1DAO;
+import taxi.DAO.AdresseDAO;
 /**
  *
  * @author CASHCONVERTERS
@@ -33,9 +34,11 @@ CardLayout cardl;
         API_TAXI1DAO taxiDAO = new API_TAXI1DAO();
         ClientDAO clientDAO = new ClientDAO();
         API_LOCATION1DAO locationDAO = new API_LOCATION1DAO();
+        AdresseDAO adresseDAO = new AdresseDAO();
         clientDAO.setConnection(dbConnect);
         taxiDAO.setConnection(dbConnect);
         locationDAO.setConnection(dbConnect);
+        adresseDAO.setConnection(dbConnect);
         creerTaxi1.setTaxiDAO(taxiDAO);
         supTaxi1.setTaxiDAO(taxiDAO);
         maj1.setTaxiDAO(taxiDAO);
@@ -43,6 +46,14 @@ CardLayout cardl;
         rechLoc1.setTaxiDAO(taxiDAO);
         rechLoc1.setClientDAO(clientDAO);
         rechLoc1.setLocationDAO(locationDAO);
+        rechLoc1.setAdresseDAO(adresseDAO);
+        creerLoc1.setAdresseDAO(adresseDAO);
+        creerLoc1.setClientDAO(clientDAO);
+        creerLoc1.setLocationDAO(locationDAO);
+        creerLoc1.setTaxiDAO(taxiDAO);
+        creerLoc1.Addtaxi();
+        creerLoc1.AddClient();
+        creerLoc1.AddAddress();
         
     }
 
@@ -60,6 +71,7 @@ CardLayout cardl;
         maj1 = new taxi.modele.Maj();
         client11 = new taxi.modele.Client1();
         rechLoc1 = new taxi.modele.RechLoc();
+        creerLoc1 = new taxi.modele.CreerLoc();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -78,6 +90,7 @@ CardLayout cardl;
         getContentPane().add(maj1, "cardMaj");
         getContentPane().add(client11, "cardClient");
         getContentPane().add(rechLoc1, "cardrechLoc");
+        getContentPane().add(creerLoc1, "cardcreerloc");
 
         jMenu1.setText("Taxis");
 
@@ -182,7 +195,10 @@ CardLayout cardl;
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        
+        creerLoc1.AddAddress();
+        creerLoc1.AddClient();
+        creerLoc1.Addtaxi();
+        cardl.show(this.getContentPane(), "cardcreerloc");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
@@ -222,6 +238,7 @@ CardLayout cardl;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private taxi.modele.Client1 client11;
+    private taxi.modele.CreerLoc creerLoc1;
     private taxi.modele.CreerTaxi creerTaxi1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

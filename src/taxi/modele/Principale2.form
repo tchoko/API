@@ -137,5 +137,12 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="taxi.modele.CreerLoc" name="creerLoc1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardcreerloc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>
